@@ -1,5 +1,6 @@
 import telebot
 import requests
+import json
 
 from pydub import AudioSegment  
 
@@ -25,8 +26,7 @@ def handle_audio(message):
     open(audio_file_name, 'wb').write(audio_file.content)
 
     # convert .OGG audio to .WAV
-    AudioSegment.from_file(audio_file_name).export("audio.wav", format="wav")
-    sound = AudioSegment.from_wav("audio.wav")
+    sound = AudioSegment.from_ogg(audio_file_name)
     sound = sound.set_channels(1)
     sound.export("audio.wav", format="wav")
 
